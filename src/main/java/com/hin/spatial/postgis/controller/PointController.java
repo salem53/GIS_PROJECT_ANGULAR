@@ -27,8 +27,8 @@ public class PointController {
         {
             return pointRepository.findAllById(id);
         }
-        @PostMapping("/books")
-        private void saveBook(@RequestBody Point point)
+        @PostMapping("/Point")
+        private void addPoint(@RequestBody Point point)
         {
                 pointService.saveOrUpdate(point);
 
