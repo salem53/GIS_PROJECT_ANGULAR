@@ -16,17 +16,24 @@ import java.util.List;
 @RequestMapping
 public class PointController {
         @Autowired
-        private PointService PointService;
+        private PointRepository pointRepository;
+        @Autowired
+        private PointService pointService;
 
+        @GetMapping("/")
+        public String back(){return "hii thereee !";}
         @GetMapping("/Points")
-        public List<Point> getPoints()
+        public List<Point> getPoints(Long id)
         {
-            return PointService.getAllPoints();
+            return pointRepository.findAllById(id);
         }
-        @PostMapping("/Point")
-        public void add(@RequestBody PointRepository pt ){
-             pt.createPoint(new Point());
+        @PostMapping("/books")
+        private void saveBook(@RequestBody Point point)
+        {
+                pointService.saveOrUpdate(point);
+
         }
+
 
 
 

@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface PointRepository extends JpaRepository<Point,Long> {
-    public List<Point>  findAll();
-    public Point createPoint(Point p);
+    public List<Point>  findAllById(Long id);
+
 
 }

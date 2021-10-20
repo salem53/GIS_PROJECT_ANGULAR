@@ -11,10 +11,13 @@ import java.util.List;
 public class PointService {
 
     @Autowired
-    private PointRepository pointrepo;
-    public List<Point> getAllPoints() {
-        return pointrepo.findAll();
+    private PointRepository pointRepository;
+
+    public void saveOrUpdate(Point point)
+    {
+        pointRepository.save(point);
     }
+
 
 
 }

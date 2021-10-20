@@ -4,8 +4,8 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Data
-@Entity(name = "user")
-@Table(name ="user",uniqueConstraints={@UniqueConstraint(columnNames={"email"})})
+@Entity(name = "utilisateur")
+@Table(name ="utilisateur",uniqueConstraints={@UniqueConstraint(columnNames={"email"})})
 public class User {
 
 	@Id

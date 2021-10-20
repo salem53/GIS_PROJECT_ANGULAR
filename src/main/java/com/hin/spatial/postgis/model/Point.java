@@ -14,7 +14,7 @@ public class Point {
 
 	@Id
 	@Column(name="id")
-	private long id;
+	private Long id;
 	
 	@Column(name="latitude")
 	private double latitude;

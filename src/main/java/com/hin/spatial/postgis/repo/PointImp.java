@@ -6,9 +6,5 @@ import java.util.List;
 
 public abstract class PointImp implements  PointRepository{
 
-    @Override
-    public Point createPoint(Point p) {
-       return new Point();
 
-    }
 }
