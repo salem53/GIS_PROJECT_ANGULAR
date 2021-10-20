@@ -22,11 +22,6 @@ public class Point {
 	@Column(name="longitude")
 	private double longitude;
 
-	@OneToMany(mappedBy="pointArrivee")
-	private Set<Trajet> trajetArrivee;
-
-	@OneToMany(mappedBy="pointDepart")
-	private Set<Trajet> trajetDepart;
 
 
 
