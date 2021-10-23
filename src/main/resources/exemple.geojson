@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"name": "Nom de trajet",
+"features": [
+{ "type": "Feature", "properties": { "id_trajet": "1", "date": 20-10-2021, "user": {  } }, "geometry": { "type": "LineString", "coordinates": [[ -101.296273199999973, 48.232509500000106 ],[ -97.032854699999973, 47.925256800000057 ],[ -7.032854699999973, 17.925256800000057 ]] } },
+{ "type": "Feature", "properties": { "id_trajet": "1", "date": 20-10-2021, "user": {  } }, "geometry": { "type": "Point", "coordinates": [-101.296273199999973, 48.232509500000106 ] } },
+{ "type": "Feature", "properties": { "id_trajet": "1", "date": 20-10-2021, "user": {  } }, "geometry": { "type": "Point", "coordinates": [ -7.032854699999973, 17.925256800000057 ] } }
+]
+}
