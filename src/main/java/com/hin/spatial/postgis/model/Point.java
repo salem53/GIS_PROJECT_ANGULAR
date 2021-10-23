@@ -22,11 +22,6 @@ public class Point {
 	@Column(name="longitude")
 	private double longitude;
 
-	@OneToMany(mappedBy="pointArrivee")
-	private Set<Trajet> trajetArrivee;
-
-	@OneToMany(mappedBy="pointDepart")
-	private Set<Trajet> trajetDepart;
 
 
 	public void setId(long id) {
@@ -41,13 +36,7 @@ public class Point {
 		this.longitude = longitude;
 	}
 
-	public void setTrajetArrivee(Set<Trajet> trajetArrivee) {
-		this.trajetArrivee = trajetArrivee;
-	}
 
-	public void setTrajetDepart(Set<Trajet> trajetDepart) {
-		this.trajetDepart = trajetDepart;
-	}
 
 	public long getId() {
 		return id;
@@ -61,11 +50,4 @@ public class Point {
 		return longitude;
 	}
 
-	public Set<Trajet> getTrajetArrivee() {
-		return trajetArrivee;
-	}
-
-	public Set<Trajet> getTrajetDepart() {
-		return trajetDepart;
-	}
 }

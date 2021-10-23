@@ -18,6 +18,15 @@ public class PointService {
         pointRepository.save(point);
     }
 
+    public void deletePoint(long id)
+    {
+        pointRepository.deleteById( id);
+    }
+
+    public void updatePoint(Point point, long Pointid)
+    {
+        pointRepository.save(point);
+    }
 
 
 }

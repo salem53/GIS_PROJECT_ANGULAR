@@ -22,17 +22,34 @@ public class PointController {
 
         @GetMapping("/")
         public String back(){return "hii thereee !";}
+
         @GetMapping("/Points")
         public List<Point> getPoints(Long id)
         {
             return pointRepository.findAllById(id);
         }
+
         @PostMapping("/Point")
-        private void addPoint(@RequestBody Point point)
+        public void addPoint(@RequestBody Point point)
         {
                 pointService.saveOrUpdate(point);
 
         }
+
+        @DeleteMapping("/Point/{Pointid}")
+        private void deletePoint(@PathVariable("Pointid") long Pointid)
+        {
+                pointService.deletePoint(Pointid);
+        }
+
+        @PutMapping("/Point")
+        private Point updatePoint(@RequestBody Point point, long id)
+        {
+                pointService.updatePoint(point,id);
+                return point;
+        }
+
+
 
 
 
