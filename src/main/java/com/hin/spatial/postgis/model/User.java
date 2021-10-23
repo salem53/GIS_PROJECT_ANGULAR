@@ -4,6 +4,7 @@ import com.vividsolutions.jts.geom.Point;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @Entity(name = "utilisateur")
@@ -27,4 +28,6 @@ public class User {
 	@Column(name="password")
 	private String password;
 
+	@OneToMany(mappedBy="user")
+	private Set<Trajet> trajets;
 }

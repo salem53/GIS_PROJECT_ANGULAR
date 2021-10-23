@@ -1,7 +1,12 @@
 package com.hin.spatial.postgis.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import com.vividsolutions.jts.geom.Point;
+import com.vividsolutions.jts.geom.LineString;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 
 import java.util.Date;
@@ -22,19 +27,20 @@ public class Trajet {
 	private Date date;
 
 
-	/*@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "depart_id", nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "fk_user", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JsonIgnore*/
+	@JsonIgnore
+	private User user;
 
-	@Column(columnDefinition ="geography")
+	@Column(columnDefinition ="pointDepart")
 	private Point pointDepart;
-	/*@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "arrivee_id", nullable = false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JsonIgnore*/
 
-	@Column(columnDefinition ="geography")
+
+	@Column(columnDefinition ="pointArrivee")
 	private Point pointArrivee;
+
+	@Column(columnDefinition="geography")
+	private LineString trajectoire;
 
 }
