@@ -27,7 +27,7 @@ public class TrajetController {
         this.trajetRepository = trajetRepository;
     }
 
-    // get trajet
+   /* // get trajet
     @GetMapping("/{trajetId}")
     public Map getTrajetById(@PathVariable Long trajetId) {
 
@@ -60,17 +60,15 @@ public class TrajetController {
             trajectFeature.put("properties",properties);
             trajectFeature.put("geometry",trajet.getTrajectoire());
 
-            pointDepartFeature.put("type","Feature");
+           *//* pointDepartFeature.put("type","Feature");
             pointDepartFeature.put("properties",properties);
             pointDepartFeature.put("geometry",trajet.getPointDepart());
 
             pointArriveeFeature.put("type","Feature");
             pointArriveeFeature.put("properties",properties);
-            pointArriveeFeature.put("geometry",trajet.getPointArrivee());
+            pointArriveeFeature.put("geometry",trajet.getPointArrivee());*//*
 
             features.add(trajectFeature) ;
-            features.add(pointDepartFeature) ;
-            features.add(pointArriveeFeature) ;
 
             geoJson.put("features",features);
 
@@ -80,22 +78,11 @@ public class TrajetController {
         return null;
 
     }
-
+*/
     //add trajet
     @PostMapping
-    public Trajet createTrajet(@RequestBody TrajetGeoJson trajetGeoJson){
-
-        Trajet trajet = new Trajet();
-
-        trajet.setNom(trajetGeoJson.getName());
-        trajet.setDate((Date)trajetGeoJson.getFeatures().get(0).get("properties").get("date"));
-        trajet.setUser((User)trajetGeoJson.getFeatures().get(0).get("properties").get("user"));
-        trajet.setTrajectoire((LineString) trajetGeoJson.getFeatures().get(0).get("geometry"));
-        trajet.setPointDepart((Point)trajetGeoJson.getFeatures().get(1).get("geometry"));
-        trajet.setPointArrivee((Point)trajetGeoJson.getFeatures().get(2).get("geometry"));
-
+    public Trajet createTrajet(@RequestBody Trajet trajet){
         return trajetRepository.save(trajet);
-
     }
 
 

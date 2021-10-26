@@ -19,12 +19,21 @@ public class Trajet {
 	@Column(name="id")
 	private long id;
 
-	@Column(name="nom")
-	private String nom;
+	@Column(name="tipe")
+	private String type;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="name")
+	private String name;
+
+	@Embedded
+	private Features features;
+
+
+
+
+	/*@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="date")
-	private Date date;
+	private Date date;*/
 
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -33,14 +42,14 @@ public class Trajet {
 	@JsonIgnore
 	private User user;
 
-	@Column(columnDefinition ="pointDepart")
+	/*@Column(columnDefinition ="pointDepart")
 	private Point pointDepart;
 
 
 	@Column(columnDefinition ="pointArrivee")
-	private Point pointArrivee;
+	private Point pointArrivee;*/
 
-	@Column(columnDefinition="geography")
-	private LineString trajectoire;
+	/*@Column(columnDefinition="geography")
+	private LineString trajectoire;*/
 
 }
