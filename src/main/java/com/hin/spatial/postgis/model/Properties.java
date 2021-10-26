@@ -13,6 +13,7 @@ import java.util.Set;
 @Data
 @Embeddable
 public class Properties {
+
     private Long idUser;
 
     @Temporal(TemporalType.TIMESTAMP)

@@ -5,11 +5,13 @@ import com.hin.spatial.postgis.model.Trajet;
 import com.hin.spatial.postgis.model.TrajetGeoJson;
 import com.hin.spatial.postgis.model.User;
 import com.hin.spatial.postgis.repo.TrajetRepository;
+import com.hin.spatial.postgis.repo.userRepository;
 import com.vividsolutions.jts.geom.LineString;
 import com.vividsolutions.jts.geom.Point;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -23,65 +25,33 @@ public class TrajetController {
     @Autowired
     private TrajetRepository trajetRepository;
 
+    @Autowired
+    private userRepository userRepo;
+
     public TrajetController(TrajetRepository trajetRepository){
         this.trajetRepository = trajetRepository;
     }
 
-   /* // get trajet
+   // get trajet
     @GetMapping("/{trajetId}")
-    public Map getTrajetById(@PathVariable Long trajetId) {
+    public Trajet getTrajetById(@PathVariable Long trajetId) {
 
-        // get trajet from database
         java.util.Optional<Trajet> optionalTrajet = trajetRepository.findById(trajetId);
-        //verify trajet is present
         if(optionalTrajet.isPresent()) {
             Trajet trajet = optionalTrajet.get();
-
-
-            //Build the geoJson : result
-            //Build the geoJson : result
-            HashMap geoJson = new HashMap();
-            geoJson.put("type","FeatureCollection");
-            geoJson.put("name",trajet.getNom());
-
-            // Create features list : will contain 3 featurs
-            // the 1st : with type LineString (trajectoire)
-            // the 2nd : with type Point (pointDepart)
-            // the 3rd : with type Point (pointArrivee)
-
-            ArrayList<Map> features = new ArrayList<Map>();
-            HashMap trajectFeature= new HashMap(),pointDepartFeature= new HashMap(),pointArriveeFeature= new HashMap(),properties= new HashMap();
-
-            properties.put("id_trajet",trajet.getId());
-            properties.put("user",trajet.getUser());
-            properties.put("date",trajet.getDate());
-
-            trajectFeature.put("type","Feature");
-            trajectFeature.put("properties",properties);
-            trajectFeature.put("geometry",trajet.getTrajectoire());
-
-           *//* pointDepartFeature.put("type","Feature");
-            pointDepartFeature.put("properties",properties);
-            pointDepartFeature.put("geometry",trajet.getPointDepart());
-
-            pointArriveeFeature.put("type","Feature");
-            pointArriveeFeature.put("properties",properties);
-            pointArriveeFeature.put("geometry",trajet.getPointArrivee());*//*
-
-            features.add(trajectFeature) ;
-
-            geoJson.put("features",features);
-
-            return geoJson;
-
+            return trajet;
         }
         return null;
 
     }
-*/
+
     //add trajet
     @PostMapping
-    public Trajet createTrajet(@RequestBody Trajet trajet){
+    public Trajet createTrajet(@RequestBody @Valid Trajet trajet){
+        Long id = trajet.getFeatures().getProperties().getIdUser();
+        System.out.println(id);
+        User user = userRepo.getById(id);
+        trajet.setUser(user);
         return trajetRepository.save(trajet);
     }
 
