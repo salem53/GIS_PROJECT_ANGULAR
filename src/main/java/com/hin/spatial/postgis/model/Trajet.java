@@ -2,8 +2,6 @@ package com.hin.spatial.postgis.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import com.vividsolutions.jts.geom.Point;
-import com.vividsolutions.jts.geom.LineString;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 

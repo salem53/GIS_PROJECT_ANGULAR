@@ -1,0 +1,18 @@
+###############################################################
+# gis_project : Spring stage build                                 #
+###############################################################
+FROM maven:3.6.0-jdk-11-slim AS gis_project_build
+
+
+COPY src /home/app/src
+COPY pom.xml /home/app
+COPY pom.xml /home/
+RUN mvn -f /home/app/pom.xml clean package
+
+###############################################################
+# dcaf_ws: Spring stage deploy                                #
+#######################################gis_project_build########################
+FROM openjdk:11-jre-slim AS gis_project
+COPY --from=dcaf_ws_build /home/app/target/dcaf-ws-0.0.1-SNAPSHOT.jar /usr/local/lib/demo.jar
+EXPOSE ${SERVER_PORT_WS}
+ENTRYPOINT ["java","-jar","/usr/local/lib/demo.jar"]

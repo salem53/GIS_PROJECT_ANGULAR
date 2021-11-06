@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping({"/trajet"})
@@ -44,6 +41,13 @@ public class TrajetController {
         return null;
 
     }
+
+    // get all trajects
+    @GetMapping("/all")
+    public List<Trajet> getAlltrajects() {
+        return trajetRepository.findAll();
+    }
+
 
     //add trajet
     @PostMapping
