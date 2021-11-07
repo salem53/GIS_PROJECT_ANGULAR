@@ -1,0 +1,28 @@
+version: "3.4"
+
+services:
+  ui:
+    image: gis
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: gis
+    container_name: gis
+    ports:
+      - 8081:8081
+    volumes:
+      - ./dcaf-ui:/dcaf-ui:z
+    depends_on:
+          - database
+  database:
+    image: postgis
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: postgis
+    container_name: postgis
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - ./data_volume:/var/lib/postgresql/data

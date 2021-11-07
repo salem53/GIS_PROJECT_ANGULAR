@@ -48,6 +48,18 @@ public class TrajetController {
         return trajetRepository.findAll();
     }
 
+    // get all trajects by user
+    @GetMapping("/all/user/{userId}")
+    public List<Trajet> getAlltrajectsByUser(@PathVariable Long userId) {
+        java.util.Optional<User> userOptional = userRepo.findById(userId);
+        if(userOptional.isPresent()) {
+            User user= userOptional.get();
+            return trajetRepository.findByUser(user);
+        }
+        return null;
+
+    }
+
 
     //add trajet
     @PostMapping
